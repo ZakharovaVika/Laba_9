@@ -23,8 +23,6 @@ btn = Button(root, text="Зарегистрироваться",padx=10, pady=3, 
 btn.pack()
 
 def info():
-
-
     inf = {}
     inf[reg_usr_ent.get()] = reg_pass_ent.get()
     f = open("login.txt", "wb")
