@@ -23,6 +23,8 @@ btn = Button(root, text="Зарегистрироваться",padx=10, pady=3, 
 btn.pack()
 
 def info():
+
+
     inf = {}
     inf[reg_usr_ent.get()] = reg_pass_ent.get()
     f = open("login.txt", "wb")
@@ -49,17 +51,22 @@ btn = Button(root, text="Войти", command=lambda :check())
 btn.pack()
 
 def check():
-    f = open("login.txt", "rb")
-    a = pickle.load(f)
-    f.close()
-    if usr_ent.get() in a and usr_ent.get()!= "":
-        if pass_ent.get() == a[usr_ent.get()]:
-            messagebox.showinfo("Вход выполнен!","Вход выполнен")
-            create()
+
+    if usr_ent.get()!= "":
+
+        f = open("login.txt", "rb")
+        a = pickle.load(f)
+        f.close()
+        if usr_ent.get() in a :
+            if pass_ent.get() == a[usr_ent.get()]:
+                messagebox.showinfo("Вход выполнен!","Вход выполнен")
+                create()
+            else:
+                messagebox.showerror("Ошибка!","Неверный логин или пароль")
         else:
-            messagebox.showerror("Ошибка!","Неверный логин или пароль")
+            messagebox.showerror("Ошибка!","Неверный логин")
     else:
-        messagebox.showerror("Ошибка!","Неверный логин")
+        messagebox.showerror("Ошибка!", "Введите логи или пароль!")
 def create():
     root.destroy()
     app = Tk()
